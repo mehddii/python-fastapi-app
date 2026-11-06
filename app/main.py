@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+import random
 
 from .config import settings
 
