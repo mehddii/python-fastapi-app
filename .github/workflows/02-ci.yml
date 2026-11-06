@@ -18,7 +18,7 @@ jobs:
           echo "Runner OS: ${{ runner.os }}"
           echo "Head ref: ${{ github.head_ref }}"
           echo "Base ref: ${{ github.base_ref }}"
-
+          echo "${{ toJson(github) }}"
   lint:
     name: Lint – Ruff
     runs-on: ubuntu-latest
