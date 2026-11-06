@@ -16,6 +16,8 @@ jobs:
           echo "Branch: ${{ github.ref_name }}"
           echo "SHA: ${{ github.sha }}"
           echo "Runner OS: ${{ runner.os }}"
+          echo "Head ref: ${{ github.head_ref }}"
+          echo "Base ref: ${{ github.base_ref }}"
 
   lint:
     name: Lint – Ruff
