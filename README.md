@@ -1,6 +1,6 @@
 # FastAPI Starter
 
-A minimal, production‑leaning FastAPI template with testing (coverage), linting/formatting, Docker, and CI. Ships with a root endpoint and a health check.
+Fork of a minimal, production‑leaning FastAPI template with testing (coverage), linting/formatting, Docker, and CI. Ships with a root endpoint and a health check.
 
 ## Features
 - FastAPI + Uvicorn
