@@ -1,8 +1,24 @@
 name: CI
 
-on: [push]
+on: [push, pull_request]
+
+env:
+  APP_NAME: fastapi-starter
+
 
 jobs:
+  meta-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display meta data
+        run: |
+          echo "Application: ${{ env.APP_NAME }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Event: ${{ github.event_name }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "SHA: ${{ github.sha }}"
+          echo "Runner OS: ${{ runner.os }}"
+
   lint:
     name: Lint – Ruff
     runs-on: ubuntu-latest
