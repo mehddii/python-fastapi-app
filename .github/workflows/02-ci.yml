@@ -2,12 +2,10 @@ name: CI
 
 on: [push, pull_request]
 
-env:
-  APP_NAME: fastapi-starter
-
-
 jobs:
   meta-data:
+    env:
+      APP_NAME: fastapi-starter
     runs-on: ubuntu-latest
     steps:
       - name: Display meta data
