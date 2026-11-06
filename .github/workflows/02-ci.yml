@@ -40,7 +40,7 @@ jobs:
 
   test:
     name: Test – Pytest
-    needs: [lint, build]
+    # needs: [lint, build]
     runs-on: ubuntu-latest
     steps:
       # même début que lint, puis : pytest
