@@ -15,3 +15,7 @@ Une action locale référencée avec `./.github/actions/build-info` est un fichi
 ## Q7
 
 Dans une action composite, GitHub Actions exige que chaque step utilisant `run` déclare explicitement son interpréteur. Contrairement à une step définie directement dans un job, aucune valeur de shell implicite n'est appliquée dans les métadonnées de l'action composite. `shell: bash` rend donc l'exécution explicite et prévisible.
+
+## Observation — Partie 4
+
+Lors de l'exécution réussie du commit `b543cd6`, GitHub Actions a affiché 0 s pour la step de l'action composite `build-info`, contre 5 s pour la step de l'action Docker `docker-hello`. L'action Docker est plus lente au démarrage, car le runner doit préparer et lancer son conteneur, tandis que l'action composite exécute directement ses commandes dans l'environnement du runner. Les jobs complets `build` et `docker-hello` ont chacun duré 11 s, mais le job `build` contenait aussi l'installation de Node.js, la génération du rapport et son téléversement.
