@@ -25,6 +25,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      full_version: ${{ steps.version.outputs.full_version }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -44,8 +46,19 @@ jobs:
         if: ${{ inputs.debug }}
         run: echo "Debug mode enabled for ${{ inputs.environment }}"
 
+      - name: Compute full version
+        id: version
+        run: echo "full_version=${{ inputs.version }}-$(date +%F)" >> "$GITHUB_OUTPUT"
+
   verify-env:
     runs-on: ubuntu-latest
     steps:
       - name: Print APP_NAME
         run: echo "APP_NAME=${APP_NAME:-<not set>}"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show deployment target
+        run: echo "Deploying ${{ needs.build.outputs.full_version }} to ${{ inputs.environment }}"
