@@ -62,3 +62,8 @@ jobs:
     steps:
       - name: Show deployment target
         run: echo "Deploying ${{ needs.build.outputs.full_version }} to ${{ inputs.environment }}"
+
+  call-greeting:
+    uses: ./.github/workflows/greeting.yml
+    with:
+      recipient: ${{ inputs.environment }}

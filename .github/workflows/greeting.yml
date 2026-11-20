@@ -1,0 +1,16 @@
+name: Reusable Greeting
+
+on:
+  workflow_call:
+    inputs:
+      recipient:
+        description: Person or environment to greet
+        required: true
+        type: string
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print greeting
+        run: echo "Bonjour ${{ inputs.recipient }}"
