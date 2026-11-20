@@ -2,6 +2,25 @@ name: Env, Inputs and Outputs Lab
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: Environnement cible
+        required: true
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+      version:
+        description: Version à déployer
+        required: true
+        default: 1.0.0
+        type: string
+      debug:
+        description: Activer les informations de débogage
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   build:
@@ -17,6 +36,13 @@ jobs:
 
       - name: Print environment variables
         run: echo "Application $APP_NAME built on $BUILD_DATE"
+
+      - name: Print deployment inputs
+        run: echo "Deploying version ${{ inputs.version }} to ${{ inputs.environment }}"
+
+      - name: Print debug information
+        if: ${{ inputs.debug }}
+        run: echo "Debug mode enabled for ${{ inputs.environment }}"
 
   verify-env:
     runs-on: ubuntu-latest
